@@ -1,0 +1,85 @@
+<div class="row">
+  <div class="col-md-6">
+    <form #f="ngForm" (ngSubmit)="save(f.value)">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input
+          [(ngModel)]="product.title"
+          ngModel
+          name="title"
+          #title="ngModel"
+          required
+          id="title"
+          type="text"
+          class="form-control"
+          placeholder="title"
+        />
+        <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
+          Title is Required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="price">Price</label>
+        <div class="input-group">
+          <span class="input-group-text">$</span>
+          <input
+            [(ngModel)]="product.price"
+            ngModel
+            name="price"
+            #price="ngModel"
+            required
+            type="number"
+            id="price"
+            class="form-control"
+          />
+        </div>
+        <div class="alert alert-danger" *ngIf="price.touched && price.invalid">
+          Price is Required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select
+          ngModel
+          [(ngModel)]="product.category"
+          name="category"
+          id="category"
+          class="form-control"
+        >
+          <option value=""></option>
+          <option *ngFor="let c of categories">
+            {{ c.name }}
+          </option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="basicurl" class="form-label">Image URL</label>
+        <input
+          [(ngModel)]="product.basicurl"
+          ngModel
+          #basicurl="ngModel"
+          name="basicurl"
+          id="basicurl"
+          type="text"
+          class="form-control"
+        />
+      </div>
+      <!-- [disabled]="f.invalid" -->
+      <button class="btn btn-primary" type="submit">Save</button>
+      <button (click)="Delete(id)" class="btn btn-danger" type="button">
+        Delete
+      </button>
+    </form>
+  </div>
+  <div class="col-md-6">
+    <div class="card" style="width: 18rem">
+      <img [src]="basicurl.value" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">{{ title.value }}</h5>
+        <p class="card-text">
+          {{ price.value }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

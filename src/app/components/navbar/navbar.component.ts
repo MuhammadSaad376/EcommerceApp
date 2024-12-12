@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../service/auth.service';
+import { AppUser } from '../../models/appUser';
 //import { getAuth, User } from 'firebase/auth';
 
 @Component({
@@ -10,7 +11,10 @@ import { AuthService } from '../../service/auth.service';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
-  constructor(public authService: AuthService) {}
+  appUser!: AppUser | null;
+  constructor(private authService: AuthService) {
+    authService.appUser$.subscribe((appUser) => (this.appUser = appUser));
+  }
 
   logout() {
     this.authService.logout();

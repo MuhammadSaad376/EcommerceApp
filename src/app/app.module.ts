@@ -18,7 +18,12 @@ import { AdminOrdersComponent } from './components/admin/admin-orders/admin-orde
 import { LoginComponent } from './components/login/login.component';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { AuthService } from './service/auth.service';
+import { AuthGuardService } from './service/auth-guard.service';
+import { AdminAuthGuardService } from './service/admin-auth-guard.service';
+import { ProductFormComponent } from './components/admin/product-form/product-form.component';
+import { CategoryService } from './service/category.service';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +37,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AdminProductsComponent,
     AdminOrdersComponent,
     LoginComponent,
+    ProductFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,8 +47,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AngularFirestoreModule, // Add Firestore if using the Firestore database
     RouterModule,
     NgbModule,
+    FormsModule,
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    AuthGuardService,
+    AdminAuthGuardService,
+    CategoryService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
