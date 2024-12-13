@@ -1,15 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CategoryService } from '../../../service/category.service';
 import { first, Observable } from 'rxjs';
 import { ProductService } from '../../../service/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
   styleUrl: './product-form.component.scss',
 })
-export class ProductFormComponent {
+export class ProductFormComponent implements OnInit {
+  @ViewChild('f') form: NgForm | undefined;
   categories: any[] = [];
   product: any = {};
   id: any;
@@ -18,7 +20,8 @@ export class ProductFormComponent {
     private productService: ProductService,
     private route: ActivatedRoute,
     private router: Router
-  ) {
+  ) {}
+  ngOnInit(): void {
     this.categorService.getCategories().subscribe((data) => {
       this.categories = data;
 
@@ -34,11 +37,12 @@ export class ProductFormComponent {
   save(product: any) {
     if (this.id) this.productService.update(this.id, product);
     else this.productService.CreateProduct(product);
+    this.product = {};
     this.router.navigate(['/admin/products']);
   }
-  Delete(productId: any) {
+  Delete() {
     if (confirm('Are You Sure You want to Delete The Product'))
-      this.productService.delete(productId);
+      this.productService.delete(this.id);
     this.router.navigate(['/admin/products']);
   }
 }

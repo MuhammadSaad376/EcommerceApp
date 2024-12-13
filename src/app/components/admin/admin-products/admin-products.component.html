@@ -3,6 +3,22 @@
     Add Product
   </button>
 </p>
+<form #f="ngForm" class="d-flex" role="search" (ngSubmit)="Submit(f.value)">
+  <input
+    class="form-control"
+    type="text"
+    name="search"
+    ngModel
+    placeholder="Search"
+    aria-label="Search"
+  />
+  <button class="btn btn-outline-success" type="submit">Search</button>
+  <button class="btn btn-outline-secondary" type="button" (click)="Reset(f)">
+    Reset
+  </button>
+</form>
+<br />
+<br />
 <table class="table table-bordered table-stripped">
   <thead>
     <tr>
@@ -12,7 +28,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let Product of products">
+    <tr *ngFor="let Product of filteredProduct">
       <td>{{ Product.title }}</td>
       <td>{{ Product.price }}</td>
       <td><a [routerLink]="['/admin/products/', Product.key]">Edit</a></td>
