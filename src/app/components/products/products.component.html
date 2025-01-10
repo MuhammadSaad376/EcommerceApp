@@ -1,1 +1,15 @@
-<p>products works!</p>
+<div class="row mt-4">
+  <div class="col-md-3 col-sm-12">
+    <app-product-filter [category]="category"></app-product-filter>
+  </div>
+  <div class="col">
+    <div class="row flex justify-content-center">
+      <div class="col-md-6" *ngFor="let p of filteredProduct">
+        <app-product-card
+          [product]="p"
+          [shopping-cart]="cart"
+        ></app-product-card>
+      </div>
+    </div>
+  </div>
+</div>

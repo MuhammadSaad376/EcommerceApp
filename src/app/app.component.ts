@@ -16,10 +16,12 @@ export class AppComponent {
     private userService: UserService
   ) {
     this.authService.user$.subscribe((user) => {
-      if (user) {
+      if (!user) {
         userService.save(user);
         let returnUrl = localStorage.getItem('returnUrl') || '/';
-        this.router.navigateByUrl(returnUrl);
+        if (!returnUrl) return;
+        localStorage.removeItem('returnUrl');
+        router.navigateByUrl(returnUrl);
       }
     });
   }

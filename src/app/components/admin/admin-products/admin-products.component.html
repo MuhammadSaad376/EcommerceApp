@@ -1,9 +1,9 @@
 <p>
-  <button class="btn btn-primary" routerLink="/admin/products/new">
+  <button class="btn btn-primary mt-4" routerLink="/admin/products/new">
     Add Product
   </button>
 </p>
-<form #f="ngForm" class="d-flex" role="search" (ngSubmit)="Submit(f.value)">
+<!-- <form #f="ngForm" class="d-flex" role="search" (ngSubmit)="Submit(f.value)">
   <input
     class="form-control"
     type="text"
@@ -16,11 +16,15 @@
   <button class="btn btn-outline-secondary" type="button" (click)="Reset(f)">
     Reset
   </button>
-</form>
+</form> -->
 <br />
 <br />
-<table class="table table-bordered table-stripped">
-  <thead>
+<table
+  datatable
+  [dtOptions]="dtOptions"
+  class="row-border hover table table-bordered table-striped"
+>
+  <!-- <thead>
     <tr>
       <th>Title</th>
       <th>Price</th>
@@ -28,10 +32,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let Product of filteredProduct">
-      <td>{{ Product.title }}</td>
-      <td>{{ Product.price }}</td>
-      <td><a [routerLink]="['/admin/products/', Product.key]">Edit</a></td>
+    <tr *ngFor="let product of filteredProduct">
+      <td>{{ product.title }}</td>
+      <td>{{ product.price }}</td>
+      <td><a [routerLink]="['/admin/products/', product.key]">Edit</a></td>
     </tr>
-  </tbody>
+  </tbody> -->
 </table>
+
+<!-- <table datatable [dtOptions]="dtOptions" class="row-border hover"></table> -->

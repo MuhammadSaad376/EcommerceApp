@@ -24,6 +24,15 @@ import { AdminAuthGuardService } from './service/admin-auth-guard.service';
 import { ProductFormComponent } from './components/admin/product-form/product-form.component';
 import { CategoryService } from './service/category.service';
 import { FormsModule } from '@angular/forms';
+
+import { PaginatorModule } from 'primeng/paginator';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { DataTablesModule } from 'angular-datatables';
+import { ProductFilterComponent } from './product-filter/product-filter.component';
+import { ProductCardComponent } from './product-card/product-card.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +47,8 @@ import { FormsModule } from '@angular/forms';
     AdminOrdersComponent,
     LoginComponent,
     ProductFormComponent,
+    ProductFilterComponent,
+    ProductCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,12 +59,17 @@ import { FormsModule } from '@angular/forms';
     RouterModule,
     NgbModule,
     FormsModule,
+    PaginatorModule,
+    MatSlideToggleModule,
+    MatPaginatorModule,
+    DataTablesModule,
   ],
   providers: [
     AuthService,
     AuthGuardService,
     AdminAuthGuardService,
     CategoryService,
+    provideAnimationsAsync(),
   ],
   bootstrap: [AppComponent],
 })

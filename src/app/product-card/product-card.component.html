@@ -1,0 +1,15 @@
+<div *ngIf="product.title" class="card" style="width: 18rem">
+  <img [src]="product.basicurl" class="card-img-top" alt="..." />
+  <div class="card-body">
+    <h5 class="card-title">{{ product.title }}</h5>
+    <p class="card-text">{{ product.price }}</p>
+  </div>
+  <div *ngIf="showAction" class="card-footer">
+    <button (click)="addToCart(product)" href="#" class="btn btn-primary w-100">
+      Add To Cart
+    </button>
+    <div>
+      {{ getQuantity() | json }}
+    </div>
+  </div>
+</div>
